@@ -1,0 +1,20 @@
+terraform {
+  required_providers {
+    vmware-desktop = {
+      source  = "elsudano/vmworkstation"
+      version = "2.0.1"
+    }
+  }
+}
+
+provider "vmware-desktop" {
+  # Chemin vers l'exécutable VMware Workstation
+  # vmrun_path = "C:\\Program Files (x86)\\VMware\\VMware Workstation\\vmrun.exe"
+  endpoint   = "http://localhost:8697"  # Ajoutez cette ligne
+  # Si une authentification est requise :
+  username   = "adminroot"      # Optionnel (si VMware REST API nécessite un login)
+  password   = "Adminroo@1"     # Optionnel (à éviter en clair, utilisez une variable)
+}
+
+#user : adminroot
+#password : Adminroo@1

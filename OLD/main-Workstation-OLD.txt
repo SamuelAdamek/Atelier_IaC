@@ -1,0 +1,21 @@
+resource "vmware-desktop_vm" "vm1" {
+  name         = "Debian-12-DB"
+  memory       = 1024 # 2 Go de RAM
+  cpus         = 1    # 2 CPU
+  disk_size    = 20   # 20 Go de disque
+  iso_path     = "C:\\SchoolWork\\ISO\\debian-12.0.0-amd64-netinst.iso" # Chemin vers l'ISO
+  guest_os     = "debian-64" # Type d'OS (voir liste ci-dessous)
+  network_type = "nat" # NAT, bridged, hostonly
+  power_on     = true  # Démarrer la VM après création
+}
+
+resource "vmware-desktop_vm" "vm2" {
+  name         = "Debian-12-WEB"
+  memory       = 1024
+  cpus         = 1
+  disk_size    = 20
+  iso_path     = "C:\\SchoolWork\\ISO\\debian-12.0.0-amd64-netinst.iso"
+  guest_os     = "debian-64"
+  network_type = "nat"
+  power_on     = true
+}

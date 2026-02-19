@@ -1,0 +1,60 @@
+resource "hyperv_iso_image" "debian_iso" {
+  source_iso_file_path = "C:\\SchoolWork\\ISO\\debian-12.0.0-amd64-netinst.iso"
+  destination_iso_file_path = "C:\\Hyper-V\\ISO\\debian-12.0.0-amd64-netinst.iso"
+}
+
+# VM 1
+resource "hyperv_machine_instance" "debian_vm1" {
+  name                = "debian-DB"
+  generation     = 2
+  memory_maximum_bytes = 4294967296
+  memory_startup_bytes      = 1073741824  
+  processor_count = 2
+  state               = "Running"
+ static_memory = true
+
+  dvd_drives {
+    controller_number = 0
+    controller_location = 0
+    path = hyperv_iso_image.debian_iso.id
+  }
+
+  network_adaptors  {
+    name          = "Network Adapter"
+    switch_name = "Default Switch"
+  }
+
+  hard_disk_drives {
+    controller_number = 0
+    controller_location = 0
+    path = "C:\\Hyper-V\\VMs\\debian-DB.vhdx"
+  }
+}
+
+# VM 2 (identique)
+resource "hyperv_machine_instance" "debian_vm2" {
+  name                = "debian-WEB"
+  generation     = 2
+  memory_maximum_bytes = 4294967296
+  memory_startup_bytes      = 1073741824  
+  processor_count = 2
+  state               = "Running"
+  static_memory = true
+
+  dvd_drives {
+    controller_number = 0
+    controller_location = 0
+    path = hyperv_iso_image.debian_iso.id
+  }
+
+  network_adaptors  {
+    name          = "Network Adapter"
+    switch_name   = "Default Switch"
+  }
+
+  hard_disk_drives {
+    controller_number = 0
+    controller_location = 0
+    path = "C:\\Hyper-V\\VMs\\debian-WEB.vhdx"
+  }
+}

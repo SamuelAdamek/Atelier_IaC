@@ -1,0 +1,19 @@
+terraform {
+  required_providers {
+    hyperv = {
+      source  = "taliesins/hyperv"
+      version = ">= 1.2.0"
+    }
+  }
+}
+
+provider "hyperv" {
+  # Configuration par défaut (localhost)
+  user     = "samue"
+  password = "1968"
+  host     = "127.0.0.1"
+  port     = 5986
+  https    = true
+  insecure = true
+  use_ntlm = true
+}

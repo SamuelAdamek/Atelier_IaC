@@ -1,0 +1,11 @@
+proxmox_api_url         = "https://192.168.107.129:8006/api2/json"
+proxmox_api_token_id    = "terraform@pve!terraform_token"
+proxmox_api_token_secret = "e2d81d5e-ff4d-49a8-8548-eb10aa16231e"
+vm_count                = 2
+vm_template             = "ubuntu-noble-cloud-template" # Nom du template
+vm_cores                = 2
+vm_memory               = 2048
+vm_disk_size            = "10G"
+vm_network_bridge       = "vmbr0"
+vm_ip                   = "dhcp"
+vm_names = ["ubuntu-web-server", "ubuntu-db-server"] # Noms personnalisés
