@@ -4,20 +4,26 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
   target_node = "IaC"
   clone       = var.vm_template
   full_clone  = true
-
+  
   # Configuration matérielle
   cores   = 1
   memory  = 1024
   scsihw  = "virtio-scsi-pci"
 
-  # Disque (ajustez la taille si nécessaire)
+  # Disques
   disk {
-	slot    = "scsi0"      # Format: scsi0, scsi1, scsi2... ou ide0, ide1...
-	size    = "10G"
-	type    = "disk"
-	storage = "local-lvm"
-	format  = "qcow2"
-}
+    slot    = "scsi0"
+    storage = "local-lvm"
+    type    = "disk"
+    size    = "10G"
+  }
+
+  # Disque init cloud de ####### 
+  disk {
+    slot    = "ide2"
+    type    = "cloudinit"
+    storage = "local-lvm"
+  }
 
   # Réseau
   network {
@@ -26,7 +32,16 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
     bridge = "vmbr0"
   }
 
-  # Cloud-Init (IP dynamique ou statique)
-  ipconfig0 = "ip=dhcp"
-  # ipconfig0 = "ip=192.168.1.10${count.index + 1}/24,gw=192.168.1.1" # Exemple IP statique
+  # Cloud-Init
+  # ipconfig0 = "ip=dhcp"
+  ipconfig0 = "ip=192.168.107.20${count.index + 1}/24,gw=192.168.107.2"
+  ciuser = "adminroot"
+  cipassword = "adminroot"
+
+
+# SSH - À AJOUTER
+  sshkeys = <<EOF
+${var.ssh_key}
+EOF
 }
+

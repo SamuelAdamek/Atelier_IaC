@@ -61,3 +61,9 @@ variable "vm_ip" {
   type        = string
   default     = "dhcp" # ou "192.168.1.100/24,gw=192.168.1.1"
 }
+
+variable "ssh_key" {
+  type        = string
+  description = "Contenu de la clé publique SSH"
+  sensitive   = true
+}
