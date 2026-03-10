@@ -83,8 +83,11 @@ echo "-------------------------------------------"
 
 cd "$SCRIPT_DIR/Ansible"
 
+# Set environment variable for safety
+export ANSIBLE_HOST_KEY_CHECKING=False
+
 # Run Ansible playbook
-ansible-playbook site.yml -i ../hosts.yml -v
+ansible-playbook site.yml -v
 
 echo ""
 echo -e "${GREEN}========================================${NC}"
