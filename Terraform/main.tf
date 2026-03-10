@@ -4,12 +4,12 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
   target_node = "pve"
   clone       = var.vm_template
   full_clone  = true
-  vmid 	      = "1100${count.index + 1}"
+  vmid 	      = 11000 + count.index + 1
   agent       = 1
 
   # Configuration matérielle
-  cores   = 1
-  memory  = 1024
+  cores   = var.vm_cores
+  memory  = var.vm_memory
   scsihw  = "virtio-scsi-pci"
 
   # Disques
@@ -20,7 +20,7 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
     size    = "10G"
   }
 
-  # Disque init cloud de ####### 
+  # Disque init cloud de  
   disk {
     slot    = "ide2"
     type    = "cloudinit"

@@ -23,7 +23,7 @@ variable "vm_count" {
 variable "vm_names" {
   description = "Liste des noms des VMs"
   type        = list(string)
-  default     = ["ubuntu-vm-db", "ubuntu-vm-bdd"] # Noms personnalisés
+  default     = ["ubuntu-web-server", "ubuntu-db-server"] # Noms personnalisés
 }
 
 variable "vm_template" {
