@@ -1,10 +1,12 @@
 resource "proxmox_vm_qemu" "ubuntu_vm" {
   count       = length(var.vm_names)
   name        = var.vm_names[count.index]
-  target_node = "IaC"
+  target_node = "pve"
   clone       = var.vm_template
   full_clone  = true
-  
+  vmid 	      = "1100${count.index + 1}"
+  agent       = 1
+
   # Configuration matérielle
   cores   = 1
   memory  = 1024
@@ -13,7 +15,7 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
   # Disques
   disk {
     slot    = "scsi0"
-    storage = "local-lvm"
+    storage = "school-work"
     type    = "disk"
     size    = "10G"
   }
@@ -22,7 +24,7 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
   disk {
     slot    = "ide2"
     type    = "cloudinit"
-    storage = "local-lvm"
+    storage = "school-work"
   }
 
   # Réseau
@@ -34,14 +36,12 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
 
   # Cloud-Init
   # ipconfig0 = "ip=dhcp"
-  ipconfig0 = "ip=192.168.107.20${count.index + 1}/24,gw=192.168.107.2"
+  ipconfig0 = "ip=192.168.1.22${count.index + 1}/24,gw=192.168.1.1"
   ciuser = "adminroot"
   cipassword = "adminroot"
 
 
-# SSH - À AJOUTER
-  sshkeys = <<EOF
-${var.ssh_key}
-EOF
+# SSH 
+  sshkeys = file(var.ssh_key)
 }
 

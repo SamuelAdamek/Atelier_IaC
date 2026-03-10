@@ -1,2 +1,2 @@
-Token ID :  terraform@pam!terraform_token 
-Secret : e2d81d5e-ff4d-49a8-8548-eb10aa16231e
+Token ID :  terraform@pam!terraformapi 
+Secret : bb3d7ec5-f1ba-4f12-8c7d-89189880a6f2

@@ -29,7 +29,7 @@ variable "vm_names" {
 variable "vm_template" {
   description = "Nom du template Ubuntu Cloud-Init"
   type        = string
-  default     = "ubuntu-noble-cloud-template" # Nom du template créé
+  default     = "ubuntu-24.04-template" # Nom du template créé
 }
 
 variable "vm_cores" {
@@ -47,7 +47,7 @@ variable "vm_memory" {
 variable "vm_disk_size" {
   description = "Taille du disque (en Go)"
   type        = string
-  default     = "20G"
+  default     = "10G"
 }
 
 variable "vm_network_bridge" {
