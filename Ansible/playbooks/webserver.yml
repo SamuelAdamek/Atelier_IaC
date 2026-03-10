@@ -15,6 +15,7 @@
           - nginx
           - nginx-extras
         state: present
+        update_cache: yes
 
     - name: Ensure Nginx service is running
       service:
@@ -52,7 +53,7 @@
         line: 'listen.group = www-data'
       notify: Restart PHP-FPM
 
-    - name: Create web directory
+    - name: Create web root directory
       file:
         path: /var/www/html
         state: directory
