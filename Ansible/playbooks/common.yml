@@ -9,16 +9,16 @@
 
   tasks:
     - name: Update apt cache
-      ansible.apt:
+      apt:
         update_cache: yes
       changed_when: false
 
     - name: Upgrade all packages
-      ansible.apt:
+      apt:
         upgrade: full
 
     - name: Install common packages
-      ansible.apt:
+      apt:
         name:
           - curl
           - wget
@@ -30,7 +30,7 @@
         state: present
 
     - name: Create admin group
-      ansible.builtin.group:
+      group:
         name: admin
         state: present
 
