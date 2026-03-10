@@ -5,7 +5,17 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
   clone       = var.vm_template
   full_clone  = true
   vmid 	      = 11000 + count.index + 1
-  agent       = 1
+  agent       = 0
+  boot = "order=scsi0;ide2;net0"
+  os_type = "cloud-init"
+
+ serial {
+    id   = 0
+    type = "socket"
+  }
+  vga {
+    type = "serial0"
+  }
 
   # Configuration matérielle
   cores   = var.vm_cores
