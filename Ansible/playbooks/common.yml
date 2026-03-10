@@ -1,0 +1,42 @@
+---
+# Common playbook - Basic setup for all servers
+- name: Common configuration for all servers
+  hosts: all
+  become: yes
+  vars:
+    http_port: 80
+    https_port: 443
+
+  tasks:
+    - name: Update apt cache
+      ansible.apt:
+        update_cache: yes
+      changed_when: false
+
+    - name: Upgrade all packages
+      ansible.apt:
+        upgrade: full
+
+    - name: Install common packages
+      ansible.apt:
+        name:
+          - curl
+          - wget
+          - git
+          - vim
+          - unzip
+          - ca-certificates
+          - gnupg
+        state: present
+
+    - name: Create admin group
+      ansible.builtin.group:
+        name: admin
+        state: present
+
+    - name: Add adminroot to admin group
+      user:
+        name: adminroot
+        groups: admin
+        append: yes
+

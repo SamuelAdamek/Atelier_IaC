@@ -1,0 +1,64 @@
+---
+# Database server playbook - PostgreSQL setup
+- name: Configure Database Server
+  hosts: dbservers
+  become: yes
+
+  vars:
+    postgresql_version: 16
+    postgresql_db: myapp
+    postgresql_user: dbuser
+    postgresql_password: "changeme123"
+
+  tasks:
+    - name: Install PostgreSQL
+      apt:
+        name:
+          - postgresql
+          - postgresql-contrib
+          - libpq-dev
+        state: present
+
+    - name: Ensure PostgreSQL service is running
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Create PostgreSQL database
+      become_user: postgres
+      postgresql_db:
+        name: "{{ postgresql_db }}"
+        encoding: 'UTF-8'
+        template: 'template0'
+
+    - name: Create PostgreSQL user
+      become_user: postgres
+      postgresql_user:
+        name: "{{ postgresql_user }}"
+        password: "{{ postgresql_password }}"
+        db: "{{ postgresql_db }}"
+        role_attr_flags: "CREATEDB,LOGIN"
+
+    - name: Allow PostgreSQL password authentication
+      lineinfile:
+        path: /etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf
+        regexp: '^local\s+all\s+all\s+peer'
+        line: 'local   all             all                                     md5'
+        state: present
+      notify: Restart PostgreSQL
+
+    - name: Configure PostgreSQL to listen on all interfaces
+      lineinfile:
+        path: /etc/postgresql/{{ postgresql_version }}/main/postgresql.conf
+        regexp: "^#?listen_addresses = "
+        line: "listen_addresses = '*'"
+        state: present
+      notify: Restart PostgreSQL
+
+  handlers:
+    - name: Restart PostgreSQL
+      service:
+        name: postgresql
+        state: restarted
+
