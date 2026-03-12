@@ -87,7 +87,7 @@ cd "$SCRIPT_DIR/Ansible"
 export ANSIBLE_HOST_KEY_CHECKING=False
 
 # Run Ansible playbook
-ansible-playbook site.yml -v
+ansible-playbook site.yml -i inventory.ini -v
 
 echo ""
 echo -e "${GREEN}========================================${NC}"
