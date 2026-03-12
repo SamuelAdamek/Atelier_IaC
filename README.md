@@ -22,7 +22,7 @@ Le projet automatise le déploiement de **2 VMs Ubuntu** sur un hyperviseur Prox
 
 | VM | IP | Rôle |
 |----|----|------|
-| ubuntu-web-server (1) | 192.168.1.221 | Serveur Web (Nginx + PHP) |
+| ubuntu-web-server | 192.168.1.221 | Serveur Web (Nginx + PHP) |
 | ubuntu-db-server | 192.168.1.222 | Serveur Base de données (PostgreSQL) |
 
 ---
