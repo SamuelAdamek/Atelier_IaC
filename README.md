@@ -220,25 +220,6 @@ Chaque VM est créée avec les caractéristiques suivantes :
 
 ---
 
-## 🔒 Sécurité
-
-Les éléments suivants ne doivent **pas** être committés, ajoutez-les à votre `.gitignore` :
-
-```gitignore
-# Secrets Terraform
-Terraform/terraform.tfvars
-Terraform/*.tfstate
-Terraform/*.tfstate.backup
-Terraform/.terraform/
-Terraform/tfplan
-
-# Clés SSH
-*.pem
-*.key
-```
-
----
-
 ## 📝 Notes
 
 - Le template Proxmox `ubuntu-24.04-template` doit être créé **manuellement** au préalable avec Cloud-Init activé.
