@@ -34,6 +34,9 @@ Serveur Base de données (PostgreSQL)
 
 
 🏗 Architecture
+
+<img width="446" height="507" alt="image" src="https://github.com/user-attachments/assets/e90db275-08a2-412b-b8fa-8c6ed2303c96" />
+
 <img width="832" height="507" alt="image" src="https://github.com/user-attachments/assets/7f8ea481-a770-446a-ac19-c4d800e6b6bf" />
 
 Le script run_infrastructure.sh orchestre l'ensemble du processus :
