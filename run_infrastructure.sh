@@ -84,7 +84,7 @@ echo "-------------------------------------------"
 cd "$SCRIPT_DIR/Ansible"
 
 # Run Ansible playbook
-ansible-playbook site.yml -i ../hosts.yml -v
+ansible-playbook site.yml -i inventory.ini -v
 
 echo ""
 echo -e "${GREEN}========================================${NC}"
