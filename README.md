@@ -18,7 +18,7 @@ Ce projet permet de déployer automatiquement une infrastructure complète compo
 
 ## 🌐 Vue d'ensemble
 
-Le projet automatise le déploiement de **3 VMs Ubuntu** sur un hyperviseur Proxmox :
+Le projet automatise le déploiement de **2 VMs Ubuntu** sur un hyperviseur Proxmox :
 
 | VM | IP | Rôle |
 |----|----|------|
@@ -106,9 +106,6 @@ vm_disk_size = "10G"
 vm_template  = "ubuntu-24.04-template"
 ssh_key      = "~/.ssh/id_ed25519.pub"
 ```
-
-> ⚠️ **Ne committez jamais votre `terraform.tfvars` contenant des secrets sur GitHub !**  
-> Ajoutez-le à votre `.gitignore`.
 
 ### 2. Ansible — `hosts.yml`
 
