@@ -4,3 +4,13 @@
 .terraform/
 .terraform.lock.hcl
 crash.log
+# Secrets Terraform
+Terraform/terraform.tfvars
+Terraform/*.tfstate
+Terraform/*.tfstate.backup
+Terraform/.terraform/
+Terraform/tfplan
+
+# Clés SSH
+*.pem
+*.key
